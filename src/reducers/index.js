@@ -1,1 +1,6 @@
-/*Just an empty file structure to upload*/
+import { combineReducers } from "redux";
+import { menuReducer } from "./menuReducer";
+
+export const rootReducer = combineReducers({
+	menuReducer,
+});

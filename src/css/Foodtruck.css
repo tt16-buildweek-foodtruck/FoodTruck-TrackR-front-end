@@ -1,0 +1,25 @@
+.foodTruck__container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+	align-items: center;
+}
+
+.foodTruck__container__title {
+	font-size: 2rem;
+	margin-bottom: 3rem;
+}
+
+.foodTruck__container__card {
+	width: 30%;
+}
+
+.foodTruck__container__card__title {
+	font-size: 1.8rem;
+}
+
+.foodTruck__container__card__location {
+	font-size: 1.2rem;
+	color: darkgreen;
+}
