@@ -1,0 +1,42 @@
+.Navbar__container {
+	display: flex;
+	background-color: olivedrab;
+	padding: 0.8rem;
+}
+
+.Navbar__container__links {
+	color: #fff;
+	text-decoration: none;
+	font-size: 1.1rem;
+	padding: 0 2rem;
+}
+
+.Navbar__container__links:hover,
+.Navbar__container__links:focus {
+	text-decoration: underline;
+	color: #000;
+	transition: all 0.5s;
+}
+
+.Navbar__container__links::active,
+.active {
+	color: purple;
+}
+
+.Navbar__container__button_container {
+	display: inline;
+}
+
+.Navbar__container__button {
+	background-color: transparent;
+	border: none;
+	color: #fff;
+	font-size: 1.1rem;
+	padding: 0.3rem;
+}
+.Navbar__container__button:hover,
+.Navbar__container__button:focus {
+	text-decoration: underline;
+	color: #000;
+	transition: all 0.5s;
+}
