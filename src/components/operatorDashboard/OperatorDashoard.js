@@ -1,20 +1,33 @@
 import React from "react";
-import OperatorFoodtruck from "./OperatorFoodTruck";
-import OperatorMenu from "./OperatorMenu";
+import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import TruckCard from "./TruckCard";
+import { v4 as uuid } from "uuid";
 import "../../css/OperatorDashboard.css";
 
-const OperatorDashboard = ({ truck }) => {
+const OperatorDashboard = ({ props, truck }) => {
+	const { push } = useHistory();
+
+	const handleAddTruck = () => {
+		push("/add-food-truck");
+	};
+
 	return (
 		<div className="operator__dashboard__container">
-			<h2 className="operator__dashboard__container__title">Food Trucks</h2>
-			<OperatorFoodtruck
-				truck={truck}
-				className="operator__dashboard__container__block"
-			/>
-			<OperatorMenu
-				menu={truck.menuItems}
-				className="operator__dashboard__container__block"
-			/>
+			<h2 className="operator__dashboard__container__title">
+				Your Food Trucks
+			</h2>
+			<button onClick={handleAddTruck}>Add New Truck</button>
+			{/* <TruckDashboard truck={truck} /> */}
+			{truck.map((foodTruck) => {
+				return (
+					<div>
+						<Link key={uuid()} to={`/trucks/${foodTruck.truckId}`}>
+							<TruckCard props={props} truck={foodTruck} />
+						</Link>
+					</div>
+				);
+			})}
 		</div>
 	);
 };

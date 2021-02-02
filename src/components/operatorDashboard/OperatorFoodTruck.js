@@ -10,10 +10,6 @@ export default function OperatorFoodtruck() {
 
 	const handleViewTruck = () => {};
 
-	const handleAddTruck = () => {
-		push("/add-food-truck");
-	};
-
 	const editTruck = () => {
 		axiosWithAuth()
 			.post(`api/trucks/user${userId}/`)
@@ -43,8 +39,6 @@ export default function OperatorFoodtruck() {
 			<div className="buttons">
 				<button className="edit-button">Edit</button>
 				<button className="delete-button">Delete</button>
-				<button onClick={handleAddTruck}>Add New Truck</button>
-				<AddFoodTruck />
 			</div>
 		</div>
 	);

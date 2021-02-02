@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { v4 as uuid } from "uuid";
+import { dummyData } from "../../constants/dummyMenuData";
 
 const initialState = {
 	itemName: "",
@@ -13,7 +14,8 @@ export default function OperatorMenu(props) {
 	const [newMenu, setNewMenu] = useState([initialState]);
 
 	useEffect(() => {
-		setNewMenu(props.menu);
+		// setNewMenu(props.menu);
+		updateMenu();
 	}, []);
 
 	const menuEdits = () => {
@@ -25,9 +27,11 @@ export default function OperatorMenu(props) {
 	};
 
 	const updateMenu = (menu) => {
-		setNewMenu(props.menu);
+		// setNewMenu(props.menu);
+		setNewMenu(dummyData[1].menuItems);
 	};
 
+	console.log(dummyData[0]);
 	return (
 		<div className="operator__dashboard__menu">
 			<h3 className="operator__dashboard__menu__title">Menu Options:</h3>
@@ -69,6 +73,9 @@ export default function OperatorMenu(props) {
 							placeholder="Enter dish's sell price"
 							className="operator__dashboard__form__input"
 						/>
+						<button className="operator__dashboard__menu__btn">
+							Add to Menu
+						</button>
 					</form>
 				</div>
 			) : (
