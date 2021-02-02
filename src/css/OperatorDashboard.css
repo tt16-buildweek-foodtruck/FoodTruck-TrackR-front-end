@@ -18,6 +18,9 @@
 
 .operator__dashboard__form {
 	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 2rem;
 }
 
 .operator__dashboard__form__label {
@@ -38,15 +41,32 @@
 	flex-direction: column;
 }
 
+.operator__dashboard__menu__title {
+	font-size: 1.5rem;
+	margin: 2rem 0;
+}
+
 .operator__dashboard__menu__btn-row {
 	display: flex;
 	margin: auto;
 }
 
-.operator__dashboard__menu__btn {
+.operator__dashboard__menu__btn,
+.operator__dashboard__menu__btn--delete {
 	font-size: 1.2rem;
-	color: #000;
+	color: #fff;
+	border: none;
+	background-color: olivedrab;
+	border-radius: 1rem;
+}
+
+.operator__dashboard__menu__btn {
 	margin: 1rem;
+}
+
+.operator__dashboard__menu__btn--delete {
+	width: 85%;
+	margin: 0 0.3rem 0.3rem;
 }
 
 .operator__dashboard__menu__container {
