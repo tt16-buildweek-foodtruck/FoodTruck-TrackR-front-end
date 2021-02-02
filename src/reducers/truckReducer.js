@@ -8,7 +8,6 @@ export const initialState = {
     isFetching: false,
     truck: {},
     error: ''
-
 };
 
 export const truckReducer = (state = initialState, action) => {

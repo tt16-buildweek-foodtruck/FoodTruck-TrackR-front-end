@@ -1,16 +1,14 @@
 import React, {useState} from 'react'
+import { connect } from 'react-redux';
 import {useParams, useHistory} from 'react-router-dom';
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
+import {fetchTruck} from '../../actions/truckActions';
 
 const initialTruckState = 
 {
-    userId: '',
-    truckId: '',
     truckName: '',
-    imageOfTruck: '',
-    cuisineType: '',
-    customerRatings: [],
-    customerRatingAvg: null,
+    truckImgURL: '',
+    cuisineId: '',
     lat: null,
     long: null,
     departureTime: ''
@@ -29,7 +27,7 @@ const initialTruckState =
 // ]
 
 const AddFoodTruck = () => {
-
+    const userId = ''
     const [newTruck, setNewTruck] = useState(initialTruckState);
 
     const {push} = useHistory();
@@ -37,7 +35,7 @@ const AddFoodTruck = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         axiosWithAuth()
-        .post(`api/trucks/user:${userId}/`, newTruck)
+        .post(`api/trucks/user/${userId}/`, newTruck)
         .then(res => {
             console.log('POST NEW TRUCK: ', res)
         })
@@ -46,27 +44,12 @@ const AddFoodTruck = () => {
         })
         setNewTruck(
             {
-                userId: '',
-                truckId: '',
                 truckName: '',
-                imageOfTruck: '',
-                cuisineType: '',
-                customerRatings: [],
-                customerRatingAvg: null,
+                truckImgURL: '',
+                cuisineId: '',
                 lat: null,
                 long: null,
-                departureTime: '',
-                // menu: 
-                // [
-                //     {
-                //         itemName: '',
-                //         itemDescription: '',
-                //         itemPhotos: [],
-                //         itemPrice: null,
-                //         customerRatings: [],
-                //         customerRatingAvg: null
-                //     }
-                // ]
+                departureTime: ''
             }
         )
         push('/operator-dashboard')
@@ -92,9 +75,9 @@ const AddFoodTruck = () => {
                         Truck Photo 
                         <input
                             type='text'
-                            name='imageOfTruck'
+                            name='truckImgURL'
                             placeholder='URL of Truck Photo...'
-                            value={newTruck.imageOfTruck}
+                            value={newTruck.truckImgURL}
                             // onChange={handleChange}
                         />
                     </label>
@@ -102,9 +85,9 @@ const AddFoodTruck = () => {
                         Cuisine Type
                         <input
                             type='text'
-                            name='cuisineType'
+                            name='cuisineId'
                             placeholder='Cuisine Type...'
-                            value={newTruck.cuisineType}
+                            value={newTruck.cuisineId}
                             // onChange={handleChange}
                         />
                     </label>
@@ -116,9 +99,9 @@ const AddFoodTruck = () => {
                         Latitude
                         <input
                             type='text'
-                            name='latitude'
+                            name='lat'
                             placeholder='Current Truck Latitude...'
-                            value={newTruck.currentLocation.location.latitude}
+                            value={newTruck.lat}
                             // onChange={handleChange}
                         />
                     </label>
@@ -126,9 +109,9 @@ const AddFoodTruck = () => {
                         Longitude
                         <input
                              type='text'
-                             name='longitude'
+                             name='long'
                              placeholder='Current Truck Longitude...'
-                             value={newTruck.currentLocation.location.longitude}
+                             value={newTruck.long}
                              // onChange={handleChange}
                         />
                     </label>
@@ -138,12 +121,12 @@ const AddFoodTruck = () => {
                              type='text'
                              name='departureTime'
                              placeholder='Truck Departure Time...'
-                             value={newTruck.currentLocation.departureTime}
+                             value={newTruck.departureTime}
                              // onChange={handleChange}
                         />
                     </label>
                 </div>
-                <div>
+                {/* <div>
                     <h4>Menu</h4>
 
                     <h5>Menu Item</h5>
@@ -178,11 +161,22 @@ const AddFoodTruck = () => {
                         />
                     </label>
                     
-                </div>
+                </div> */}
                 <button>Add Food Truck</button>
             </form>
         </div>
     )
 }
 
-export default AddFoodTruck
+const mapStateToProps = state => {
+    return {
+        truckName: state.truckName,
+        truckImgURL: state.truckImgURL,
+        cuisineId: state.cuisineId,
+        lat: state.lat,
+        long: state.long,
+        departureTime: state.departureTime
+    }
+}
+
+export default connect(mapStateToProps, {fetchTruck})(AddFoodTruck)

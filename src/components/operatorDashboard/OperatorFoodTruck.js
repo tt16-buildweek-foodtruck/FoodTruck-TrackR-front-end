@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
+import AddFoodTruck from "../foodTruck/AddFoodTruck";
 
 export default function OperatorFoodtruck() {
 	const userId = "";
@@ -43,6 +44,7 @@ export default function OperatorFoodtruck() {
 				<button className="edit-button">Edit</button>
 				<button className="delete-button">Delete</button>
 				<button onClick={handleAddTruck}>Add New Truck</button>
+				<AddFoodTruck />
 			</div>
 		</div>
 	);
