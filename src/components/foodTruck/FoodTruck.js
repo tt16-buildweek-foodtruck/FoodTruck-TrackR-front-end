@@ -6,6 +6,7 @@ import OperatorDashboard from "../operatorDashboard/OperatorDashoard";
 import Menu from "../menu/Menu";
 import "../../css/Foodtruck.css";
 
+
 const FoodTruck = () => {
 	const userId = "";
 	const operator = true;
@@ -23,6 +24,7 @@ const FoodTruck = () => {
 
 	return (
 		<div className="foodTruck__container">
+
 			{operator === true
 				? dummyData.map((truck) => {
 						return (

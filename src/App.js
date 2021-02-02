@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import LoginForm from "./components/forms/LoginForm";
 import Footer from "./components/footer/Footer";
-import FoodTruck from "./components/foodTruck/FoodTruck";
+import {FoodTruck} from "./components/foodTruck/FoodTruck";
 import "./css/App.css";
 import SignUpForm from "./components/forms/SignUpForm";
 import Home from "./components/home/Home";
