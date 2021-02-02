@@ -1,37 +1,40 @@
 .foodTruck__container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+	align-items: center;
+	width: 100%;
 }
 
 .foodTruck__container__title {
-  font-size: 2rem;
-  margin-bottom: 3rem;
+	font-size: 2rem;
+	margin-bottom: 3rem;
+	color: #000;
+	text-shadow: none;
 }
 
 .foodTruck__container__card {
-  width: 30%;
+	width: 30%;
 }
 
 .foodTruck__container__card__title {
-  font-size: 1.8rem;
+	font-size: 1.8rem;
 }
 
 .foodTruck__container__card__location {
-  font-size: 1.2rem;
-  color: darkgreen;
+	font-size: 1.2rem;
+	color: darkgreen;
 }
 
 .operator-button {
-  width: 100px;
+	width: 100px;
 }
 
 .edit-button {
-  width: 100px;
+	width: 100px;
 }
 
 .delete-button {
-  width: 100px;
+	width: 100px;
 }

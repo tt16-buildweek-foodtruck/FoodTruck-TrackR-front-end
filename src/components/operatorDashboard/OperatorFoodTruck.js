@@ -1,18 +1,16 @@
 import React from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
-import AddFoodTruck from "../foodTruck/AddFoodTruck";
+import { dummyData } from "../../constants/dummyMenuData";
 
 export default function OperatorFoodtruck() {
 	const userId = "";
 	const truckId = "";
 	const { push } = useHistory();
 
-	const handleViewTruck = () => {};
+	const fakedData = dummyData[1];
 
-	const handleAddTruck = () => {
-		push("/add-food-truck");
-	};
+	const handleViewTruck = () => {};
 
 	const editTruck = () => {
 		axiosWithAuth()
@@ -39,12 +37,13 @@ export default function OperatorFoodtruck() {
 	};
 
 	return (
-		<div>
+		<div className="operator__dashboard__menu ">
+			<h3 className="operator__dashboard__menu__title">
+				{fakedData.truckName}
+			</h3>
 			<div className="buttons">
-				<button className="edit-button">Edit</button>
-				<button className="delete-button">Delete</button>
-				<button onClick={handleAddTruck}>Add New Truck</button>
-				<AddFoodTruck />
+				<button className="operator__dashboard__menu__btn">Edit</button>
+				<button className="operator__dashboard__menu__btn">Delete</button>
 			</div>
 		</div>
 	);

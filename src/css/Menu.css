@@ -23,11 +23,13 @@
 .menu__block__title {
 	font-size: 1.6rem;
 	margin: 1rem;
+	color: #000;
 }
 
 .menu__block__paragraph {
 	font-size: 1.2rem;
 	margin-bottom: 0.5rem;
+	color: #000;
 }
 
 .menu__block__price {
