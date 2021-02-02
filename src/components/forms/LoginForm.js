@@ -30,11 +30,11 @@ class LoginForm extends Component {
 	render() {
 		const { username, password } = this.state;
 		return (
-			<div class="login_Div">
-				<div class="food_Truck_Img_Div">
+			<div className="login_Div">
+				<div className="food_Truck_Img_Div">
 					<img src={foodtruck} />
 				</div>
-				<div class="input_Area">
+				<div className="input_Area">
 					<form onSubmit={this.handleSubmit}>
 						<h1> Already A Member ???</h1>
 						<span>Login to Your Account</span>
@@ -55,7 +55,7 @@ class LoginForm extends Component {
 							/>
 						</div>
 
-						<div class="button_Div">
+						<div className="button_Div">
 							<button>Login</button>
 							<h2>Get Signed Up Today</h2>
 							<button>Sign Up</button>

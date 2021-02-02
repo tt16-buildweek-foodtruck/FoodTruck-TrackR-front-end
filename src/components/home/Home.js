@@ -5,7 +5,7 @@ class Home extends Component {
 	render() {
 		return (
 			<div>
-				<div class="underNav_Banner">
+				<div className="underNav_Banner">
 					<h1>Hungry Yet?</h1>
 					<p>
 						Come Get <span>Fat</span>
@@ -13,7 +13,7 @@ class Home extends Component {
 					<p>
 						<span>And</span> Possibly Food Poisening
 					</p>
-					<div class="anchor_Tag_DIV">
+					<div className="anchor_Tag_DIV">
 						<a href="/signup">Sign Up</a>
 						<a href="/login">Log In Here</a>
 					</div>
