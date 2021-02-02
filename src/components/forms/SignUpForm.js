@@ -29,11 +29,11 @@ class SignUpForm extends Component {
 	render() {
 		const { username, password } = this.state;
 		return (
-			<div className="signUp_Div">
-				<div className="food_Truck_2_Img_Div">
+			<div class="signUp_Div">
+				<div class="food_Truck_2_Img_Div">
 					<img src={foodtruck2} />
 				</div>
-				<div className="input_Area">
+				<div class="input_Area">
 					<form onSubmit={this.handleSubmit}>
 						<h1> Become a Member Today</h1>
 						<span>Sign Up for An Account</span>
@@ -61,7 +61,7 @@ class SignUpForm extends Component {
 								onChange={this.handleUsernameChange}
 							/>
 						</div>
-						<div className="sign_Up-Button_Div">
+						<div class="sign_Up-Button_Div">
 							<button>Sign Up</button>
 						</div>
 					</form>
