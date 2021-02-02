@@ -1,9 +1,8 @@
-/*Just an empty file structure to upload*/
-import axios from "axios";
+// import axios from "axios";
 import React, { Component } from "react";
-import "../../css/Loginform.css";
-import foodtruck from "../../assets/image/foodtruck.jpeg";
-class LoginForm extends Component {
+import "../../css/SignUpForm.css";
+import foodtruck2 from "../../assets/image/foodtruck2.jpeg";
+class SignUpForm extends Component {
 	constructor(props) {
 		super(props);
 
@@ -30,14 +29,14 @@ class LoginForm extends Component {
 	render() {
 		const { username, password } = this.state;
 		return (
-			<div class="login_Div">
-				<div class="food_Truck_Img_Div">
-					<img src={foodtruck} />
+			<div class="signUp_Div">
+				<div class="food_Truck_2_Img_Div">
+					<img src={foodtruck2} />
 				</div>
 				<div class="input_Area">
 					<form onSubmit={this.handleSubmit}>
-						<h1> Already A Member ???</h1>
-						<span>Login to Your Account</span>
+						<h1> Become a Member Today</h1>
+						<span>Sign Up for An Account</span>
 						<div>
 							<label>Username: </label>
 							<input
@@ -54,10 +53,15 @@ class LoginForm extends Component {
 								onChange={this.handlePasswordChange}
 							/>
 						</div>
-
-						<div class="button_Div">
-							<button>Login</button>
-							<h2>Get Signed Up Today</h2>
+						<div>
+							<label>SOMETHING ELSE: </label>
+							<input
+								type="text"
+								value={username}
+								onChange={this.handleUsernameChange}
+							/>
+						</div>
+						<div class="sign_Up-Button_Div">
 							<button>Sign Up</button>
 						</div>
 					</form>
@@ -67,4 +71,4 @@ class LoginForm extends Component {
 	}
 }
 
-export default LoginForm;
+export default SignUpForm;

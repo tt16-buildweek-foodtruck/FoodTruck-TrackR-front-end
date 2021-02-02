@@ -1,0 +1,26 @@
+.underNav_Banner {
+	color: blue;
+	background-image: url(/src/assets/image/tacos.jpeg);
+	background-repeat: no-repeat;
+	background-position: center;
+	text-align: center;
+	height: 80vh;
+	padding-top: 30vh;
+}
+h1 {
+	font-size: 8rem;
+}
+p {
+	font-size: 4rem;
+	color: white;
+}
+span {
+	font-size: 4rem;
+	color: red;
+	font-weight: bold;
+}
+a {
+}
+
+.anchor_Tag_DIV {
+}
