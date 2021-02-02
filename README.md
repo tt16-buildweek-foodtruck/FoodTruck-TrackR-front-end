@@ -1,3 +1,5 @@
 # front-end
 
-Basic file structure upload for cohesive team work.
+If operator === true: render OperatorDashboard
+else
+render FoodTruck & Menu
