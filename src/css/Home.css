@@ -7,20 +7,15 @@
 	height: 80vh;
 	padding-top: 30vh;
 }
-h1 {
+.first_H1 {
 	font-size: 8rem;
 }
-p {
+.home_P {
 	font-size: 4rem;
 	color: white;
 }
-span {
+.home_Span {
 	font-size: 4rem;
 	color: red;
 	font-weight: bold;
-}
-a {
-}
-
-.anchor_Tag_DIV {
 }

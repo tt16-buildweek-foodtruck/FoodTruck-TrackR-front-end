@@ -12,20 +12,31 @@ class LoginForm extends Component {
 			password: "",
 		};
 	}
-	handleUsernameChange = (event) => {
-		this.setState({
-			username: event.target.value,
-		});
-	};
-	handlePasswordChange = (event) => {
-		this.setState({
-			password: event.target.value,
-		});
-	};
-	handleSubmit = (event) => {
-		alert(`${this.state.username} ${this.state.password}`);
 
+	handleChange = (event) => {
+		this.setState({ ...this.state, [event.target.name]: event.target.value });
+	};
+
+	handleSubmit = (event) => {
 		event.preventDefault();
+		const login_Info = {
+			username: this.state.username,
+			password: this.state.password,
+		};
+		console.log("logininfo", login_Info);
+
+		axios
+			.post(
+				"https://tt16-food-truck-api.herokuapp.com/api/auth/login",
+				login_Info
+			)
+			.then((res) => {
+				console.log(res);
+				console.log(res.data);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 	};
 	render() {
 		const { username, password } = this.state;
@@ -41,17 +52,19 @@ class LoginForm extends Component {
 						<div>
 							<label>Username: </label>
 							<input
+								name="username"
 								type="text"
 								value={username}
-								onChange={this.handleUsernameChange}
+								onChange={this.handleChange}
 							/>
 						</div>
 						<div>
 							<label>Password: </label>
 							<input
+								name="password"
 								type="text"
 								value={password}
-								onChange={this.handlePasswordChange}
+								onChange={this.handleChange}
 							/>
 						</div>
 

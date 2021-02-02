@@ -6,24 +6,13 @@ class Home extends Component {
 		return (
 			<div>
 				<div className="underNav_Banner">
-					<h1>Hungry Yet?</h1>
-					<p>
-						Come Get <span>Fat</span>
+					<h1 className="first_H1">Hungry Yet?</h1>
+					<p className="home_P">
+						Come Get <span className="home_Span">Fat</span>
 					</p>
-					<p>
-						<span>And</span> Possibly Food Poisening
+					<p className="home_P">
+						<span className="home_Span">And</span> Possibly Food Poisoning
 					</p>
-					<div className="anchor_Tag_DIV">
-						<a href="/signup">Sign Up</a>
-						<a href="/login">Log In Here</a>
-					</div>
-				</div>
-				<div>
-					<div>
-						<h1></h1>
-						<p></p>
-					</div>
-					<div></div>
 				</div>
 			</div>
 		);
