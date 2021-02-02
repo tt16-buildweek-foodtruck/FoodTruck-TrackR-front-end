@@ -22,12 +22,8 @@ export default function TruckDashboard(props) {
 			.catch((err) => console.log(`There was an error:`, err));
 	};
 	return (
-		<div>
-			<div
-				key={truck.truckId}
-				id={truck.truckId}
-				className="operator__dashboard__menu__container animate__animated animate__fadeInUp"
-			>
+		<div className="animate__animated animate__fadeInUp">
+			<div key={truck.truckId} id={truck.truckId}>
 				<h3 className="operator__dashboard__menu__container__itemName">
 					{truck.truckName}
 				</h3>

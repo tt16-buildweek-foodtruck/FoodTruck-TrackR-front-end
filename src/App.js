@@ -49,12 +49,14 @@ function App() {
 				}}
 			></Route>
 
+			{/* This route points to the unique Truckdashboard created by passing render props to foodTruck component above. This will be a private route once the endpoint is available.*/}
 			<Route
 				path="/trucks/:id"
 				render={(props) => {
 					return <TruckDashboard {...props} />;
 				}}
 			></Route>
+			{/* This route points to add-food-truck, as defined in AddFoodTruck component This will be a private route once the endpoint is available.*/}
 			<Route
 				path="/add-food-truck"
 				render={(props) => {

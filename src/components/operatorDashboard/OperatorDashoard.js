@@ -12,8 +12,9 @@ const OperatorDashboard = ({ props, truck }) => {
 		push("/add-food-truck");
 	};
 
+	//using render props in App.js to grab truckId; using that Id to generate a unique trucks/id link and displaying a unique TruckCard component attached to that truck id.
 	return (
-		<div className="operator__dashboard__container">
+		<div className="operator__dashboard__container animate__animated animate__fadeInUp">
 			<h2 className="operator__dashboard__container__title">
 				Your Food Trucks
 			</h2>
@@ -23,7 +24,7 @@ const OperatorDashboard = ({ props, truck }) => {
 				return (
 					<div>
 						<Link key={uuid()} to={`/trucks/${foodTruck.truckId}`}>
-							<TruckCard props={props} truck={foodTruck} />
+							<TruckCard props={props} truck={foodTruck} key={uuid()} />
 						</Link>
 					</div>
 				);

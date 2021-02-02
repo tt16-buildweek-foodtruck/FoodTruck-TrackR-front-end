@@ -7,7 +7,7 @@ import "../../css/Foodtruck.css";
 
 const FoodTruck = ({ props, trucks }) => {
 	const userId = "";
-	const operator = true;
+	const operator = false;
 	const [renderTrucks, setRenderTrucks] = useState([]);
 
 	// useEffect(() => {
@@ -30,24 +30,26 @@ const FoodTruck = ({ props, trucks }) => {
 					/>
 				</div>
 			) : (
-				trucks.map((truck) => {
-					return (
-						<div key={uuid()} className="foodTruck__container__card">
-							<h1 className="foodTruck__container__title">
-								Find a truck near you!
-							</h1>
-							<h3 className="foodTruck__container__card__title">
-								{truck.truckName}
-							</h3>
-							<p className="foodTruck__container__card__location">
-								We're currently: {truck.truckLocation}
-							</p>
-							<div>
-								<Menu menu={truck} />
+				<div className="foodTruck__container__card">
+					<h1 className="foodTruck__container__title animate__animated animate__fadeInUp">
+						Find a truck near you!
+					</h1>
+					{trucks.map((truck) => {
+						return (
+							<div key={uuid()}>
+								<h3 className="foodTruck__container__card__title">
+									{truck.truckName}
+								</h3>
+								<p className="foodTruck__container__card__location">
+									We're currently: {truck.truckLocation}
+								</p>
+								<div>
+									<Menu menu={truck} />
+								</div>
 							</div>
-						</div>
-					);
-				})
+						);
+					})}
+				</div>
 			)}
 		</div>
 	);

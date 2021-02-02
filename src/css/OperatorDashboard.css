@@ -16,11 +16,20 @@
 
 /* Add Dish Form Styling */
 
+.operator__dashboard__form,
+.operator__dashboard__form__label,
+.operator__dashboard__form__input,
+.operator__dashboard__menu__btn {
+	opacity: 1;
+	transition: all 0.5s;
+}
+
 .operator__dashboard__form {
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
-	margin-bottom: 2rem;
+	margin-bottom: 4%;
 }
 
 .operator__dashboard__form__label {
@@ -34,11 +43,19 @@
 	font-size: 1.1rem;
 }
 
+.invisible {
+	opacity: 0;
+	transition: all 0.5s;
+}
+
 /* Menu Styling */
 
 .operator__dashboard__menu {
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 0 20%;
 }
 
 .operator__dashboard__menu__title {
@@ -71,10 +88,13 @@
 
 .operator__dashboard__menu__container {
 	display: flex;
+	text-align: center;
+	justify-content: center;
 	align-items: center;
 	background-color: #f7f7f7;
 	border-bottom: solid lightgray 0.2rem;
 	border-radius: 1rem;
+	width: 100%;
 }
 
 .closed {
