@@ -7,7 +7,10 @@ import "../../css/Foodtruck.css";
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import OperatorDashboard from "./OperatorDashboard";
 
-const FoodTruck = () => {
+export const FoodTruck = () => {
+
+	const userId = ''
+	const truckId = ''
 
 	const {push} = useHistory()
 
@@ -50,7 +53,7 @@ const FoodTruck = () => {
 	return (
 		<div className="foodTruck__container">
 			<div>
-				{operator === true ? <OperatorDashboard/> : ''}
+				{/* {operator === true ? <OperatorDashboard/> : ''} */}
 			</div>
 			<h1 className="foodTruck__container__title">Find a truck near you!</h1>
 			{dummyData.map((truck) => {
@@ -76,6 +79,4 @@ const FoodTruck = () => {
 			})}
 		</div>
 	);
-}
-
-export default FoodTruck
+} }
