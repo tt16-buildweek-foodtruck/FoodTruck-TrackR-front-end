@@ -14,6 +14,23 @@
 	color: #000;
 }
 
+/* Add Dish Form Styling */
+
+.operator__dashboard__form {
+	display: flex;
+}
+
+.operator__dashboard__form__label {
+	font-size: 1.2rem;
+	color: #000;
+	text-shadow: none;
+	margin: 0 1rem;
+}
+
+.operator__dashboard__form__input {
+	font-size: 1.1rem;
+}
+
 /* Menu Styling */
 
 .operator__dashboard__menu {
@@ -21,10 +38,15 @@
 	flex-direction: column;
 }
 
+.operator__dashboard__menu__btn-row {
+	display: flex;
+	margin: auto;
+}
+
 .operator__dashboard__menu__btn {
 	font-size: 1.2rem;
 	color: #000;
-	margin: 1rem auto;
+	margin: 1rem;
 }
 
 .operator__dashboard__menu__container {
