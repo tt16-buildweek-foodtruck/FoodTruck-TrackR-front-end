@@ -7,7 +7,7 @@ import "../../css/Foodtruck.css";
 
 const FoodTruck = ({ props, trucks }) => {
 	const userId = "";
-	const operator = false;
+	const operator = true;
 	const [renderTrucks, setRenderTrucks] = useState([]);
 
 	// useEffect(() => {
