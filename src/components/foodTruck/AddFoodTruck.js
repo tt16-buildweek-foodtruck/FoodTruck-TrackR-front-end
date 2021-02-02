@@ -46,32 +46,27 @@ const AddFoodTruck = () => {
         })
         setNewTruck(
             {
+                userId: '',
+                truckId: '',
                 truckName: '',
                 imageOfTruck: '',
                 cuisineType: '',
                 customerRatings: [],
                 customerRatingAvg: null,
-                currentLocation: 
-                {
-                    location: {
-                        latitude: '',
-                        longitude: '',
-                        // distortion: ''
-                    },
-                    departureTime: ''
-
-                },
-                menu: 
-                [
-                    {
-                        itemName: '',
-                        itemDescription: '',
-                        itemPhotos: [],
-                        itemPrice: null,
-                        customerRatings: [],
-                        customerRatingAvg: null
-                    }
-                ]
+                lat: null,
+                long: null,
+                departureTime: '',
+                // menu: 
+                // [
+                //     {
+                //         itemName: '',
+                //         itemDescription: '',
+                //         itemPhotos: [],
+                //         itemPrice: null,
+                //         customerRatings: [],
+                //         customerRatingAvg: null
+                //     }
+                // ]
             }
         )
         push('/operator-dashboard')
