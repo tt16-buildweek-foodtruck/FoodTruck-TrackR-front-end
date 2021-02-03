@@ -31,10 +31,14 @@ const AddFoodTruck = () => {
 
 	const { push } = useHistory();
 
+	const handleChange = event => {
+        setNewTruck({...newTruck, [event.target.name]: event.target.value})
+    }
+
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		axiosWithAuth()
-			.post(`api/trucks/user/${userId}/`, newTruck)
+			.post(`https://tt16-food-truck-api.herokuapp.com/api/trucks/user/${userId}/`, newTruck)
 			.then((res) => {
 				console.log("POST NEW TRUCK: ", res);
 			})
@@ -65,7 +69,7 @@ const AddFoodTruck = () => {
 							name="truckName"
 							placeholder="Truck Name..."
 							value={newTruck.truckName}
-							// onChange={handleChange}
+							onChange={handleChange}
 						/>
 					</label>
 					<label>
@@ -75,7 +79,7 @@ const AddFoodTruck = () => {
 							name="truckImgURL"
 							placeholder="URL of Truck Photo..."
 							value={newTruck.truckImgURL}
-							// onChange={handleChange}
+							onChange={handleChange}
 						/>
 					</label>
 					<label>
@@ -85,7 +89,7 @@ const AddFoodTruck = () => {
 							name="cuisineId"
 							placeholder="Cuisine Type..."
 							value={newTruck.cuisineId}
-							// onChange={handleChange}
+							onChange={handleChange}
 						/>
 					</label>
 				</div>
@@ -99,7 +103,7 @@ const AddFoodTruck = () => {
 							name="lat"
 							placeholder="Current Truck Latitude..."
 							value={newTruck.lat}
-							// onChange={handleChange}
+							onChange={handleChange}
 						/>
 					</label>
 					<label>
@@ -109,7 +113,7 @@ const AddFoodTruck = () => {
 							name="long"
 							placeholder="Current Truck Longitude..."
 							value={newTruck.long}
-							// onChange={handleChange}
+							onChange={handleChange}
 						/>
 					</label>
 					<label>
@@ -119,46 +123,10 @@ const AddFoodTruck = () => {
 							name="departureTime"
 							placeholder="Truck Departure Time..."
 							value={newTruck.departureTime}
-							// onChange={handleChange}
+							onChange={handleChange}
 						/>
 					</label>
 				</div>
-				{/* <div>
-                    <h4>Menu</h4>
-
-                    <h5>Menu Item</h5>
-                    <label>
-                        Item Name
-                        <input 
-                            type='text'
-                            name='itemName'
-                            placeholder='Menu Item Name...'
-                            value={}
-                            onChange={}
-                        />
-                    </label>
-                    <label>
-                        Item Description
-                        <input 
-                            type='text'
-                            name='itemDescription'
-                            placeholder='Menu Item Description...'
-                            value={}
-                            onChange={}
-                        />
-                    </label>
-                    <label>
-                        Item Price
-                        <input 
-                            type='text'
-                            name='itemPrice'
-                            placeholder='Menu Item Price...'
-                            value={}
-                            onChange={}
-                        />
-                    </label>
-                    
-                </div> */}
 				<button>Add Food Truck</button>
 			</form>
 		</div>

@@ -13,21 +13,7 @@ class SignUpForm extends Component {
 			isOperator: false,
 		};
 	}
-	// handleUsernameChange = (event) => {
-	// 	this.setState({
-	// 		username: event.target.value,
-	// 	});
-	// };
-	// handleEmailChange = (event) => {
-	// 	this.setState({
-	// 		email: event.target.value,
-	// 	});
-	// };
-	// handlePasswordChange = (event) => {
-	// 	this.setState({
-	// 		password: event.target.value,
-	// 	});
-	// };
+	
 	handleCheckboxChange = (event) => {
 		this.setState({
 			isOperator: event.target.checked,
