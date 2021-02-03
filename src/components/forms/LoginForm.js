@@ -1,8 +1,9 @@
 /*Just an empty file structure to upload*/
-import axios from "axios";
+import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import React, { Component } from "react";
 import "../../css/Loginform.css";
 import foodtruck from "../../assets/image/foodtruck.jpeg";
+
 class LoginForm extends Component {
 	constructor(props) {
 		super(props);
@@ -25,14 +26,11 @@ class LoginForm extends Component {
 		};
 		console.log("logininfo", login_Info);
 
-		axios
-			.post(
-				"https://tt16-food-truck-api.herokuapp.com/api/auth/login",
-				login_Info
-			)
+		axiosWithAuth()
+			.post("api/auth/login", login_Info)
 			.then((res) => {
-				console.log(res);
-				console.log(res.data);
+				window.localStorage.setItem("token", res.data.token);
+				window.location = "/home";
 			})
 			.catch((err) => {
 				console.log(err);

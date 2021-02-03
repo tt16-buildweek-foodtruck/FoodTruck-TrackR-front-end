@@ -13,7 +13,7 @@ class SignUpForm extends Component {
 			isOperator: false,
 		};
 	}
-	
+
 	handleCheckboxChange = (event) => {
 		this.setState({
 			isOperator: event.target.checked,
@@ -33,10 +33,7 @@ class SignUpForm extends Component {
 
 		if (this.state.isOperator === false) {
 			axios
-				.post(
-					"https://tt16-food-truck-api.herokuapp.com/api/auth/register-user",
-					register_Info
-				)
+				.post("auth/register-user", register_Info)
 				.then((res) => {
 					console.log(res);
 					console.log(res.data);
