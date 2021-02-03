@@ -1,24 +1,55 @@
 import React, { useState, useEffect } from "react";
 import { v4 as uuid } from "uuid";
-import { dummyData } from "../../constants/dummyMenuData";
+import { axiosWithAuth } from "../../utils/axiosWithAuth";
 
 const initialState = {
 	itemName: "",
 	itemDescription: "",
-	itemPrice: "",
+	itemImgURL: "",
+	price: "",
 };
 
-export default function OperatorMenu(props) {
+export default function OperatorMenu({ userId, truckId }) {
 	const [edit, setEdit] = useState(false);
 	const [dish, setDish] = useState(false);
+	const [newDish, setNewDish] = useState(initialState);
 	const [newMenu, setNewMenu] = useState([initialState]);
-
-	const fakedData = dummyData[1];
+	const [formValues, setFormValues] = useState(initialState);
 
 	useEffect(() => {
-		// setNewMenu(props.menu);
-		updateMenu();
+		const fetchMenu = () => {
+			axiosWithAuth()
+				.get(`api/menus/truck${truckId}`)
+				.then((res) => {
+					setNewMenu(res.data.data);
+				});
+		};
+		fetchMenu();
 	}, []);
+
+	const onChange = (e) => {
+		setFormValues({ ...formValues, [e.target.name]: e.target.value });
+	};
+
+	const onSubmit = (e) => {
+		e.preventDefault();
+		axiosWithAuth()
+			.post(`api/menus/truck${truckId}/`, formValues)
+			.then((res) => {
+				setNewDish(res.data);
+				updateMenu();
+			});
+	};
+
+	const updateMenu = () => {
+		axiosWithAuth()
+			.get(`api/menus/truck${truckId}`)
+			.then((res) => {
+				setNewMenu(res.data.data);
+			});
+	};
+
+	//Styling garbage
 
 	const menuEdits = () => {
 		return setEdit(!edit);
@@ -26,15 +57,6 @@ export default function OperatorMenu(props) {
 
 	const addDish = () => {
 		return setDish(!dish);
-	};
-
-	const updateMenu = (menu) => {
-		// setNewMenu(props.menu);
-		setNewMenu(fakedData.menuItems);
-	};
-
-	const handleSubmit = (e) => {
-		e.preventDefault();
 	};
 
 	return (
@@ -52,24 +74,40 @@ export default function OperatorMenu(props) {
 			{/* if dish flag is true, render add new dish form and create functionality */}
 			{dish === true ? (
 				<div>
-					<form onSubmit={handleSubmit} className="operator__dashboard__form">
+					<form onSubmit={onSubmit} className="operator__dashboard__form">
 						<label className="operator__dashboard__form__label">Name:</label>
 						<input
-							name="name"
+							name="itemName"
 							type="text"
-							id="name"
+							id="itemName"
 							placeholder="Enter dish's name"
 							className="operator__dashboard__form__input"
+							onChange={onChange}
+							value={formValues.itemName}
 						/>
 						<label className="operator__dashboard__form__label">
 							Description:
 						</label>
 						<input
-							name="description"
+							name="itemDescription"
 							type="text"
-							id="description"
+							id="itemDescription"
 							placeholder="Enter dish's description"
 							className="operator__dashboard__form__input"
+							onChange={onChange}
+							value={formValues.itemDescription}
+						/>
+						<label className="operator__dashboard__form__label">
+							Item Image
+						</label>
+						<input
+							name="itemImgURL"
+							type="text"
+							id="itemImgURL"
+							placeholder="Enter an image URL"
+							className="operator__dashboard__form__input"
+							onChange={onChange}
+							value={formValues.itemImgURL}
 						/>
 						<label className="operator__dashboard__form__label">Price:</label>
 						<input
@@ -78,6 +116,8 @@ export default function OperatorMenu(props) {
 							id="price"
 							placeholder="Enter dish's sell price"
 							className="operator__dashboard__form__input"
+							onChange={onChange}
+							value={formValues.price}
 						/>
 						<button className="operator__dashboard__menu__btn">
 							Add to Menu
@@ -87,37 +127,18 @@ export default function OperatorMenu(props) {
 			) : (
 				// If dish != true, render the form for spacing but make it invisible.
 				<div>
-					<form onSubmit={handleSubmit} className="operator__dashboard__form">
+					<form onSubmit={onSubmit} className="operator__dashboard__form">
 						<label className="operator__dashboard__form__label invisible">
 							Name:
 						</label>
-						<input
-							name="name"
-							type="text"
-							id="name"
-							placeholder="Enter dish's name"
-							className="operator__dashboard__form__input invisible"
-						/>
+
 						<label className="operator__dashboard__form__label invisible">
 							Description:
 						</label>
-						<input
-							name="description"
-							type="text"
-							id="description"
-							placeholder="Enter dish's description"
-							className="operator__dashboard__form__input invisible"
-						/>
+
 						<label className="operator__dashboard__form__label invisible">
 							Price:
 						</label>
-						<input
-							name="price"
-							type="number"
-							id="price"
-							placeholder="Enter dish's sell price"
-							className="operator__dashboard__form__input invisible"
-						/>
 						<button className="operator__dashboard__menu__btn invisible">
 							Add to Menu
 						</button>
@@ -137,7 +158,7 @@ export default function OperatorMenu(props) {
 							</p>
 							<div className="operator__dashboard__menu__container__price--wrapper">
 								<p className="operator__dashboard__menu__container__price">
-									{item.itemPrice}
+									{item.price}
 								</p>
 								<button className="operator__dashboard__menu__btn--delete">
 									Delete

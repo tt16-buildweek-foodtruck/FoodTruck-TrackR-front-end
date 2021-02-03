@@ -1,25 +1,33 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { fetchMenu } from "../../actions/menuActions";
 import { dummyData } from "../../constants/dummyMenuData";
 import { v4 as uuid } from "uuid";
 import MenuItem from "./MenuItems";
 import "../../css/Menu.css";
+import { axiosWithAuth } from "../../utils/axiosWithAuth";
 
-const Menu = ({ error, isFetching, menuItems, menu }) => {
-	//To be used when we have endpoints
-	// useEffect(() => {
-	// 	fetchMenu();
-	// }, []);
+const Menu = ({ error, isFetching, menuItems }) => {
+	const truckId = window.localStorage.getItem("user");
+	const [menu, setMenu] = useState([]);
 
-	//Faking responses to create component
+	const fetchMenu = () => {
+		axiosWithAuth()
+			.get(`api/menus/truck${truckId}`)
+			.then((res) => {
+				setMenu(res.data);
+			});
+	};
+	fetchMenu();
+
+	console.log(menu);
 	return (
 		<div>
-			{/* {isFetching === true ? (
+			{isFetching === true ? (
 				<div className="menu__block">
 					<h3 className="menu__block__title">Grabbing menu items...</h3>
 				</div>
-			) : dummyData !== "" ? (
+			) : menu !== "" ? (
 				<div className="menu__block">
 					<h2 className="menu__block__title">Menu Options:</h2>
 					{menu.menuItems.map((truckMenu) => {
@@ -36,7 +44,7 @@ const Menu = ({ error, isFetching, menuItems, menu }) => {
 						There was an error: {error}. Please try again.
 					</h3>
 				</div>
-			)} */}
+			)}
 		</div>
 	);
 };

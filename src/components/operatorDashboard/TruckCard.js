@@ -1,5 +1,4 @@
 import React from "react";
-import TruckDashboard from "./TruckDashboard";
 
 const TruckCard = ({ truck }) => {
 	return (
