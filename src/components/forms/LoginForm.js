@@ -1,8 +1,9 @@
 /*Just an empty file structure to upload*/
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import React, { Component } from "react";
-import "../../css/Loginform.css";
+import { fetchUser } from "../../actions/index";
 import foodtruck from "../../assets/image/foodtruck.jpeg";
+import "../../css/Loginform.css";
 
 class LoginForm extends Component {
 	constructor(props) {
@@ -11,6 +12,9 @@ class LoginForm extends Component {
 		this.state = {
 			username: "",
 			password: "",
+			isOperator: false,
+			user: {},
+			error: "",
 		};
 	}
 
@@ -20,28 +24,36 @@ class LoginForm extends Component {
 
 	handleSubmit = (event) => {
 		event.preventDefault();
+
 		const login_Info = {
 			username: this.state.username,
 			password: this.state.password,
 		};
-		console.log("logininfo", login_Info);
 
 		axiosWithAuth()
 			.post("api/auth/login", login_Info)
 			.then((res) => {
 				window.localStorage.setItem("token", res.data.token);
-				window.location = "/home";
+				this.setState({
+					user: {
+						isOperator: res.data.isOperator,
+						userID: res.data.loggedInUserId,
+					},
+				});
+				// this.props.fetchUser(this.state.user);
+				// window.location = "/foodtruck";
 			})
 			.catch((err) => {
-				console.log(err);
+				this.setState(err);
 			});
 	};
+
 	render() {
 		const { username, password } = this.state;
 		return (
 			<div className="login_Div">
 				<div className="food_Truck_Img_Div">
-					<img src={foodtruck} />
+					<img src={foodtruck} alt="Vendor with Fish & Chips truck" />
 				</div>
 				<div className="input_Area">
 					<form onSubmit={this.handleSubmit}>

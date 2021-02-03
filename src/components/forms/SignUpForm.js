@@ -33,13 +33,15 @@ class SignUpForm extends Component {
 
 		if (this.state.isOperator === false) {
 			axios
-				.post("auth/register-user", register_Info)
+				.post(
+					"https://tt16-food-truck-api.herokuapp.com/api/auth/register-user",
+					register_Info
+				)
 				.then((res) => {
-					console.log(res);
-					console.log(res.data);
+					window.location = "/login";
 				})
 				.catch((err) => {
-					console.log(err.error.message, err.error.recived, err);
+					// console.log(err.error.message || err.error.recived, err);
 				});
 		} else {
 			axios
@@ -48,8 +50,7 @@ class SignUpForm extends Component {
 					register_Info
 				)
 				.then((res) => {
-					console.log(res);
-					console.log(res.data);
+					window.location = "/login";
 				})
 				.catch((err) => {
 					console.log(err);
@@ -61,7 +62,10 @@ class SignUpForm extends Component {
 		return (
 			<div className="signUp_Div">
 				<div className="food_Truck_2_Img_Div">
-					<img src={foodtruck2} />
+					<img
+						src={foodtruck2}
+						alt="Chef preparing food for a small crowd in a stall"
+					/>
 				</div>
 				<div className="input_Area">
 					<form onSubmit={this.handleSubmit}>

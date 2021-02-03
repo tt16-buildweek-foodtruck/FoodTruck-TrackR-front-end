@@ -5,6 +5,8 @@ import "../../css/Navbar.css";
 const Nav = () => {
 	const logOut = () => {
 		window.localStorage.removeItem("token");
+		window.localStorage.removeItem("isOperator");
+		window.localStorage.removeItem("user");
 		window.location = "/login";
 	};
 
