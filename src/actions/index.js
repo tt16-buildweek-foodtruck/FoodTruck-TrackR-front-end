@@ -1,1 +1,5 @@
-/*Just an empty file structure to upload*/
+export const FETCH_USER = "FETCH_USER";
+
+export const fetchUser = (user) => {
+	return { type: FETCH_USER, payload: user };
+};

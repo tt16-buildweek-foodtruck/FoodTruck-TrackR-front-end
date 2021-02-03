@@ -7,19 +7,17 @@ import "../../css/Foodtruck.css";
 
 const FoodTruck = ({ props, trucks }) => {
 	const userId = "";
-	const operator = true;
 	const [renderTrucks, setRenderTrucks] = useState([]);
 
 	// useEffect(() => {
 	// 	const refreshTrucks = () => {
 	// 		setRenderTrucks(trucks);
-	// 	};
-	// 	refreshTrucks();
+	// 	};/ 	refreshTrucks();
 	// }, [trucks]);
 
 	return (
 		<div className="foodTruck__container">
-			{operator === true ? (
+			{!!localStorage.getItem("operator") === true ? (
 				<div>
 					<h1 className="foodTruck__container__title">
 						Welcome to Your Foodtruck Dashboard
