@@ -14,7 +14,7 @@ export default function OperatorFoodtruck() {
 
 	const editTruck = () => {
 		axiosWithAuth()
-			.post(`api/trucks/user${userId}/`)
+			.post(`https://tt16-food-truck-api.herokuapp.com/api/trucks/user${userId}/`)
 			.then((res) => {
 				console.log("POST FOOD TRUCK RES: ", res);
 				push("/update-truck/${}");
@@ -25,7 +25,7 @@ export default function OperatorFoodtruck() {
 		const deleteTruck = (event) => {
 			event.preventDefault();
 			axiosWithAuth()
-				.delete(`api/trucks/user${userId}/${truckId}`)
+				.delete(`https://tt16-food-truck-api.herokuapp.com/api/trucks/user${userId}/${truckId}`)
 				.then((res) => {
 					console.log("DELETE FOOD TRUCK RES: ", res);
 					push("/operator-dashboard");
