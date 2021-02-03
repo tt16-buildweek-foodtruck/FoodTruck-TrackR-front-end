@@ -15,7 +15,7 @@ const Menu = ({ error, isFetching, menuItems, menu }) => {
 	//Faking responses to create component
 	return (
 		<div>
-			{isFetching === true ? (
+			{/* {isFetching === true ? (
 				<div className="menu__block">
 					<h3 className="menu__block__title">Grabbing menu items...</h3>
 				</div>
@@ -36,7 +36,7 @@ const Menu = ({ error, isFetching, menuItems, menu }) => {
 						There was an error: {error}. Please try again.
 					</h3>
 				</div>
-			)}
+			)} */}
 		</div>
 	);
 };

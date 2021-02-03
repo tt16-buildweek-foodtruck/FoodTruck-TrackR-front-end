@@ -7,10 +7,10 @@ import { fetchTruck } from "../../actions/truckActions";
 const initialTruckState = {
 	truckName: "",
 	truckImgURL: "",
-	cuisineId: "",
-	lat: null,
-	long: null,
-	departureTime: "",
+	cuisineId: 0,
+	// lat: null,
+	// long: null,
+	// departureTime: "",
 };
 
 // menu:
@@ -26,19 +26,19 @@ const initialTruckState = {
 // ]
 
 const AddFoodTruck = () => {
-	const userId = "";
+	const userId = window.localStorage.getItem("user");
 	const [newTruck, setNewTruck] = useState(initialTruckState);
 
 	const { push } = useHistory();
 
-	const handleChange = event => {
-        setNewTruck({...newTruck, [event.target.name]: event.target.value})
-    }
+	const handleChange = (event) => {
+		setNewTruck({ ...newTruck, [event.target.name]: event.target.value });
+	};
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		axiosWithAuth()
-			.post(`https://tt16-food-truck-api.herokuapp.com/api/trucks/user/${userId}/`, newTruck)
+			.post(`api/trucks/user${userId}/`, newTruck)
 			.then((res) => {
 				console.log("POST NEW TRUCK: ", res);
 			})
@@ -94,7 +94,7 @@ const AddFoodTruck = () => {
 					</label>
 				</div>
 
-				<div>
+				{/* <div>
 					<h4>Current Truck Location</h4>
 					<label>
 						Latitude
@@ -126,7 +126,7 @@ const AddFoodTruck = () => {
 							onChange={handleChange}
 						/>
 					</label>
-				</div>
+				</div> */}
 				<button>Add Food Truck</button>
 			</form>
 		</div>

@@ -1,7 +1,6 @@
 /*Just an empty file structure to upload*/
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import { fetchUser } from "../../actions/index";
 import foodtruck from "../../assets/image/foodtruck.jpeg";
 import "../../css/Loginform.css";
@@ -25,6 +24,7 @@ class LoginForm extends Component {
 
 	handleSubmit = (event) => {
 		event.preventDefault();
+
 		const login_Info = {
 			username: this.state.username,
 			password: this.state.password,
@@ -40,8 +40,7 @@ class LoginForm extends Component {
 						userID: res.data.loggedInUserId,
 					},
 				});
-				console.log(this.state.user);
-				this.props.fetchUser(this.state.user);
+				// this.props.fetchUser(this.state.user);
 				// window.location = "/foodtruck";
 			})
 			.catch((err) => {
@@ -50,7 +49,6 @@ class LoginForm extends Component {
 	};
 
 	render() {
-		console.log(this.props.fetchUser);
 		const { username, password } = this.state;
 		return (
 			<div className="login_Div">
@@ -92,10 +90,4 @@ class LoginForm extends Component {
 	}
 }
 
-const mapStateToProps = (state) => {
-	return {
-		user: state.userReducer.user,
-	};
-};
-
-export default connect(mapStateToProps, { fetchUser })(LoginForm);
+export default LoginForm;

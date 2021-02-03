@@ -5,25 +5,41 @@ import OperatorDashboard from "../operatorDashboard/OperatorDashoard";
 import Menu from "../menu/Menu";
 import "../../css/Foodtruck.css";
 
-const FoodTruck = ({ props, trucks }) => {
-	const userId = "";
-	const [renderTrucks, setRenderTrucks] = useState([]);
+const initialState = [];
 
-	// useEffect(() => {
-	// 	const refreshTrucks = () => {
-	// 		setRenderTrucks(trucks);
-	// 	};/ 	refreshTrucks();
-	// }, [trucks]);
+const FoodTruck = ({ props, trucks }) => {
+	const userId = window.localStorage.getItem("user");
+	const operator = !!window.localStorage.getItem("isOperator");
+	const [renderTrucks, setRenderTrucks] = useState(initialState);
+
+	useEffect(() => {
+		const populateDashboards = () => {
+			if (operator === true) {
+				axiosWithAuth()
+					.get(`api/trucks/user${userId}`)
+					.then((res) => {
+						setRenderTrucks(res.data.data);
+					});
+			} else {
+				axiosWithAuth()
+					.get("api/search/all")
+					.then((res) => {
+						setRenderTrucks(res.data.data);
+					});
+			}
+		};
+		populateDashboards();
+	}, []);
 
 	return (
 		<div className="foodTruck__container">
-			{!!localStorage.getItem("operator") === true ? (
+			{operator === true ? (
 				<div>
 					<h1 className="foodTruck__container__title">
 						Welcome to Your Foodtruck Dashboard
 					</h1>
 					<OperatorDashboard
-						truck={trucks}
+						truck={renderTrucks}
 						className="foodTruck__container__dashboard"
 					/>
 				</div>
@@ -32,7 +48,7 @@ const FoodTruck = ({ props, trucks }) => {
 					<h1 className="foodTruck__container__title animate__animated animate__fadeInUp">
 						Find a truck near you!
 					</h1>
-					{trucks.map((truck) => {
+					{renderTrucks.map((truck) => {
 						return (
 							<div key={uuid()}>
 								<h3 className="foodTruck__container__card__title">

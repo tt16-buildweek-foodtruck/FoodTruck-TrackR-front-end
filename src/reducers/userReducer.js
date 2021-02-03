@@ -1,10 +1,7 @@
 import { FETCH_USER } from "../actions/index";
 
 const initialState = {
-	user: {
-		isOperator: false,
-		userID: 0,
-	},
+	user: {},
 	error: "",
 };
 
