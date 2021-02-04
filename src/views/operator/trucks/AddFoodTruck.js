@@ -70,7 +70,7 @@ const AddFoodTruck = () => {
 					<label>
 						Cuisine Type
 						<input
-							type="text"
+							type="number"
 							name="cuisineId"
 							placeholder="Cuisine Type..."
 							value={newTruck.cuisineId}

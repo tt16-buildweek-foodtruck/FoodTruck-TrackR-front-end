@@ -4,6 +4,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { axiosWithAuth } from "../../../utils/axiosWithAuth";
 import { fetchTruck } from "../../../actions/truckActions";
 
+
 const initialTruckState = {
 	truckName: "",
 	truckImgURL: "",
@@ -13,13 +14,8 @@ const initialTruckState = {
 	departureTime: "",
 };
 
-
-const UpdateFoodTruck = () => {
-    const userId = window.localStorage.getItem("user");
-    const truckId = window.localStorage
+const UpdateFoodTruck = ({setEditing, userId, truckId, truck, setTruck}) => {
 	const [newTruck, setNewTruck] = useState(initialTruckState);
-
-    const { push } = useHistory();
 
 	const handleChange = (event) => {
 		setNewTruck({ ...newTruck, [event.target.name]: event.target.value });
@@ -31,19 +27,21 @@ const UpdateFoodTruck = () => {
 			.put(`api/trucks/user${userId}/${truckId}`, newTruck)
 			.then((res) => {
 				console.log("POST NEW TRUCK: ", res);
+				const truckValues = res.data.data;
+				setTruck({
+					truckName: truckValues.truckName,
+					truckImgURL: truckValues.truckImgURL,
+					cuisineId: truckValues.cuisineId,
+					lat: truckValues.lat,
+					long: truckValues.long,
+					departureTime: truckValues.departureTime,
+				});
+				setEditing(false)
+				setNewTruck(initialTruckState)
 			})
 			.catch((err) => {
 				console.log("NEW TRUCK ERROR: ", err);
 			});
-		setNewTruck({
-			truckName: "",
-			truckImgURL: "",
-			cuisineId: "",
-			lat: null,
-			long: null,
-			departureTime: "",
-		});
-		push("/foodtruck");
 	};
     return (
         <div>
@@ -74,7 +72,7 @@ const UpdateFoodTruck = () => {
 					<label>
 						Cuisine Type
 						<input
-							type="text"
+							type="number"
 							name="cuisineId"
 							placeholder="Cuisine Type..."
 							value={newTruck.cuisineId}
@@ -121,4 +119,15 @@ const UpdateFoodTruck = () => {
     )
 }
 
-export default UpdateFoodTruck
+const mapStateToProps = (state) => {
+	return {
+		truckName: state.truckName,
+		truckImgURL: state.truckImgURL,
+		cuisineId: state.cuisineId,
+		lat: state.lat,
+		long: state.long,
+		departureTime: state.departureTime,
+	};
+};
+
+export default connect(mapStateToProps, { fetchTruck })(UpdateFoodTruck);
