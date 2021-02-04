@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { v4 as uuid } from "uuid";
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
-import OperatorDashboard from "../operatorDashboard/OperatorDashoard";
-import Menu from "../menu/Menu";
+import OperatorDashboard from './OperatorDashoard';
+import Menu from "./menus/Menu";
 import "../../css/Foodtruck.css";
 
 const initialState = [];

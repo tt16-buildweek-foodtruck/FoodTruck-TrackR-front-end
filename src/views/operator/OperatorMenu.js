@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { v4 as uuid } from "uuid";
-import { axiosWithAuth } from "../../utils/axiosWithAuth";
-import EditMenu from "./EditMenu";
+import { axiosWithAuth } from "../../utils/axiosWithAuth"
+import EditMenu from "../operator/menus/EditMenu";
 
 const initialState = {
 	itemName: "",

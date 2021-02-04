@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { fetchMenu } from "../../actions/menuActions";
-import { dummyData } from "../../constants/dummyMenuData";
+import { fetchMenu } from "../../../actions/menuActions";
+import { dummyData } from "../../../constants/dummyMenuData";
 import { v4 as uuid } from "uuid";
 import MenuItem from "./MenuItems";
-import "../../css/Menu.css";
-import { axiosWithAuth } from "../../utils/axiosWithAuth";
+import "../../../css/Menu.css";
+import { axiosWithAuth } from "../../../utils/axiosWithAuth";
 
 const Menu = ({ error, isFetching, menuItems }) => {
 	const truckId = window.localStorage.getItem("user");

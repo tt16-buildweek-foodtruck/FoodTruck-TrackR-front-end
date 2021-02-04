@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import OperatorFoodtruck from "../operatorDashboard/OperatorFoodTruck";
+import OperatorFoodtruck from "../../operator/OperatorFoodTruck";
 import { v4 as uuid } from "uuid";
 import { useParams } from "react-router-dom";
-import OperatorMenu from "../operatorDashboard/OperatorMenu";
-import "../../css/OperatorDashboard.css";
-import { axiosWithAuth } from "../../utils/axiosWithAuth";
+import OperatorMenu from "../../operator/OperatorMenu";
+import '../../../css/OperatorDashboard.css'
+import { axiosWithAuth } from "../../../utils/axiosWithAuth";
 
 export default function TruckDashboard({ userId }) {
 	const { truckId } = useParams();
@@ -35,6 +35,7 @@ export default function TruckDashboard({ userId }) {
 				</p>
 			</div>
 			<OperatorFoodtruck
+				userId={userId}
 				truck={truck}
 				truckId={truckId}
 				className="operator__dashboard__container__block"

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import TruckCard from "./TruckCard";
-import TruckDashboard from "./TruckDashboard";
+import TruckDashboard from "../operator/trucks/TruckDashboard"
 import { v4 as uuid } from "uuid";
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import "../../css/OperatorDashboard.css";
