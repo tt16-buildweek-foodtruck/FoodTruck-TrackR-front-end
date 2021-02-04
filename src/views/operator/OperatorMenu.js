@@ -13,6 +13,8 @@ const initialState = {
 export default function OperatorMenu({ truckId }) {
 	const [edit, setEdit] = useState(false);
 	const [dishEdit, setDishEdit] = useState([initialState]);
+	const [item, setItem] = useState("");
+	const [message, setMessage] = useState("");
 	const [newMenu, setNewMenu] = useState([initialState]);
 	const [formValues, setFormValues] = useState(initialState);
 
@@ -25,7 +27,7 @@ export default function OperatorMenu({ truckId }) {
 				});
 		};
 		fetchMenu();
-	}, []);
+	}, [truckId]);
 
 	const onChange = (e) => {
 		setFormValues({ ...formValues, [e.target.name]: e.target.value });
@@ -37,6 +39,25 @@ export default function OperatorMenu({ truckId }) {
 			.post(`api/menus/truck${truckId}/`, formValues)
 			.then((res) => {
 				updateMenu();
+			});
+	};
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		axiosWithAuth()
+			.put(`api/menus/truck${truckId}/${item}`, formValues)
+			.then((res) => {
+				updateMenu();
+			});
+	};
+
+	const handleDelete = () => {
+		axiosWithAuth()
+			.delete(`api/menus/truck${truckId}/${item}`)
+			.then((res) => {
+				setMessage(res.data.message);
+				updateMenu();
+				setItem("");
 			});
 	};
 
@@ -52,8 +73,10 @@ export default function OperatorMenu({ truckId }) {
 
 	return (
 		<div className="operator__dashboard__menu">
-			<h3 className="operator__dashboard__menu__title">Menu Options:</h3>
-			<div className="operator__dashboard__menu__btn-row"></div>
+			<h2 className="operator__dashboard__menu__title">Menu Options:</h2>
+			<div className="operator__dashboard__menu__btn-row">
+				<h2 className="operator__dashboard__menu__title">Create a New Dish:</h2>
+			</div>
 			<div>
 				<form onSubmit={onSubmit} className="operator__dashboard__form">
 					<label className="operator__dashboard__form__label">Name:</label>
@@ -102,21 +125,93 @@ export default function OperatorMenu({ truckId }) {
 						Add to Menu
 					</button>
 				</form>
-
+				<h2 className="operator__dashboard__menu__title">Edit Menu</h2>
 				{edit === true
 					? dishEdit.map((item) => {
 							return (
-								<EditMenu
-									key={uuid()}
-									itemId={item.itemId}
-									truckId={item.truckId}
-									item={item}
+								<div
+									key={item.itemId}
 									className="operator__dashboard__menu__container"
-								/>
+								>
+									<form
+										className="operator__dashboard__form"
+										onSubmit={handleSubmit}
+									>
+										<label className="operator__dashboard__form__label">
+											Name:
+										</label>
+										<input
+											name="itemName"
+											id="itemName"
+											type="text"
+											placeholder={item.itemName}
+											value={formValues.itemName}
+											onChange={onChange}
+											className="operator__dashboard__form__input"
+										/>
+										<label className="operator__dashboard__form__label">
+											Description:
+										</label>
+										<input
+											name="itemDescription"
+											id="itemDescription"
+											type="text"
+											placeholder={item.itemDescription}
+											value={formValues.itemDescription}
+											onChange={onChange}
+											className="operator__dashboard__form__input"
+										/>
+										<label className="operator__dashboard__form__label">
+											Image URL:
+										</label>
+										<input
+											name="itemImgURL"
+											id="itemImgURL"
+											type="text"
+											placeholder={item.itemImgURL}
+											value={formValues.itemImgURL}
+											onChange={onChange}
+											className="operator__dashboard__form__input"
+										/>
+										<label className="operator__dashboard__form__label">
+											Price:
+										</label>
+										<input
+											name="price"
+											id="price"
+											type="text"
+											placeholder={item.price}
+											value={formValues.price}
+											onChange={onChange}
+											className="operator__dashboard__form__input"
+										/>
+										<button
+											className="operator__dashboard__menu__btn"
+											onClick={() => {
+												setItem(item.itemId);
+											}}
+										>
+											Save Edits
+										</button>
+									</form>
+									<button
+										className="operator__dashboard__menu__btn"
+										onClick={() => {
+											setItem(item.itemId);
+											handleDelete();
+										}}
+									>
+										Delete
+									</button>
+									<div>{message !== "" ? <p>{message}</p> : ""}</div>
+								</div>
+
+								// <EditMenu
+
+								// />
 							);
 					  })
 					: ""}
-
 				{newMenu.map((item) => {
 					return (
 						<div

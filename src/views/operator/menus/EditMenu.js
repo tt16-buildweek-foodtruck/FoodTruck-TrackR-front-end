@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { axiosWithAuth } from "../../../utils/axiosWithAuth";
-import { v4 as uuid } from "uuid";
 
 const initialState = {
 	itemName: "",
@@ -9,9 +8,9 @@ const initialState = {
 	price: "",
 };
 
-export default function EditMenu({ itemId, truckId, item }) {
+export default function EditMenu({ itemId, truckId, item, setNewMenu }) {
 	const [formValues, setFormValues] = useState(initialState);
-	// const userId = window.localStorage.getItem("user");
+	const [message, setMessage] = useState("");
 
 	useEffect(() => {
 		const fetchDishes = () => {
@@ -30,26 +29,17 @@ export default function EditMenu({ itemId, truckId, item }) {
 		e.preventDefault();
 		axiosWithAuth()
 			.put(`api/menus/truck${truckId}/${itemId}`, formValues)
-			.then((res) => {
-				updateDish();
-			});
+			.then((res) => {});
 	};
 
 	const handleDelete = () => {
 		axiosWithAuth()
 			.delete(`api/menus/truck${truckId}/${itemId}`)
 			.then((res) => {
-				console.log(res.data);
+				setMessage(res.data.message);
 			});
 	};
 
-	const updateDish = () => {
-		axiosWithAuth()
-			.get(`api/menus/${itemId}`)
-			.then((res) => {});
-	};
-
-	console.log(formValues);
 	return (
 		<div className="operator__dashboard__menu__container">
 			<form className="operator__dashboard__form" onSubmit={onSubmit}>
@@ -98,6 +88,7 @@ export default function EditMenu({ itemId, truckId, item }) {
 			<button className="operator__dashboard__menu__btn" onClick={handleDelete}>
 				Delete
 			</button>
+			<div>{message !== "" ? <p>{message}</p> : ""}</div>
 		</div>
 	);
 }
