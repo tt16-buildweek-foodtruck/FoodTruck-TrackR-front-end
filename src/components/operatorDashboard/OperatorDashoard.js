@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import TruckCard from "./TruckCard";
+import TruckDashboard from "./TruckDashboard";
 import { v4 as uuid } from "uuid";
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import "../../css/OperatorDashboard.css";
@@ -9,6 +10,7 @@ import "../../css/OperatorDashboard.css";
 const initialState = [];
 
 const OperatorDashboard = ({ props, truck }) => {
+	const userId = window.localStorage.getItem("user");
 	const [truckList, setTruckList] = useState(initialState);
 
 	const getFoodTruck = () => {
@@ -39,12 +41,16 @@ const OperatorDashboard = ({ props, truck }) => {
 				Your Food Trucks
 			</h2>
 			<button onClick={handleAddTruck}>Add New Truck</button>
-			{/* <TruckDashboard truck={truck} /> */}
 			{truck.map((foodTruck) => {
 				return (
 					<div key={uuid()}>
 						<Link to={`/trucks/${foodTruck.truckId}`}>
-							<TruckCard props={props} truck={foodTruck} key={uuid()} />
+							<TruckCard
+								props={props}
+								truck={foodTruck}
+								userId={userId}
+								key={uuid()}
+							/>
 						</Link>
 					</div>
 				);

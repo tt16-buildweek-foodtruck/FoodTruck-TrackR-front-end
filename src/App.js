@@ -13,16 +13,18 @@ import AddFoodTruck from "./components/foodTruck/AddFoodTruck";
 import "./css/App.css";
 
 function App() {
+	const userId = window.localStorage.getItem("user");
+
 	return (
 		<div className="App">
 			<Navbar />
 			<PrivateRoute path="/foodtruck" component={FoodTruck} />;
-			<PrivateRoute
-				path="/trucks/:id"
+			<Route
+				path={"/trucks/:truckId"}
 				render={(props) => {
-					return <TruckDashboard {...props} />;
+					return <TruckDashboard {...props} userId={userId} />;
 				}}
-			></PrivateRoute>
+			></Route>
 			<Route
 				path="/add-food-truck"
 				render={(props) => {

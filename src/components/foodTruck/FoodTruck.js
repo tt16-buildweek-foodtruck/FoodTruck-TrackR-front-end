@@ -58,7 +58,7 @@ const FoodTruck = ({ props, trucks }) => {
 									We're currently: {truck.truckLocation}
 								</p>
 								<div>
-									<Menu menu={truck} />
+									<Menu userId={userId} />
 								</div>
 							</div>
 						);

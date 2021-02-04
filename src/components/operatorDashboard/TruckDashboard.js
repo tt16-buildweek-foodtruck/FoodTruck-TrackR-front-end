@@ -1,29 +1,32 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useHistory } from "react-router-dom";
 import OperatorFoodtruck from "../operatorDashboard/OperatorFoodTruck";
+import { v4 as uuid } from "uuid";
+import { useParams } from "react-router-dom";
 import OperatorMenu from "../operatorDashboard/OperatorMenu";
 import "../../css/OperatorDashboard.css";
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
 
-export default function TruckDashboard(props) {
+export default function TruckDashboard({ userId }) {
+	const { truckId } = useParams();
+
 	const [truck, setTruck] = useState("");
-	const params = useParams();
 
 	useEffect(() => {
-		fetchTruck(params.id);
-	}, [params.id]);
+		fetchTruck();
+	}, []);
 
-	const fetchTruck = (id) => {
+	const fetchTruck = () => {
 		axiosWithAuth()
-			.get(`api/trucks/:${id}`)
+			.get(`api/menus/truck${userId}`)
 			.then((res) => {
 				setTruck(res.data);
 			})
 			.catch((err) => console.log(`There was an error:`, err));
 	};
+
 	return (
 		<div className="animate__animated animate__fadeInUp">
-			<div key={truck.truckId} id={truck.truckId}>
+			<div key={uuid()}>
 				<h3 className="operator__dashboard__menu__container__itemName">
 					{truck.truckName}
 				</h3>
@@ -33,10 +36,12 @@ export default function TruckDashboard(props) {
 			</div>
 			<OperatorFoodtruck
 				truck={truck}
+				truckId={truckId}
 				className="operator__dashboard__container__block"
 			/>
 			<OperatorMenu
-				menu={truck.menuItems}
+				userId={userId}
+				truckId={truckId}
 				className="operator__dashboard__container__block"
 			/>
 		</div>
