@@ -11,6 +11,7 @@ import SignUpForm from "./views/signup/SignUpForm";
 import Home from "./views/landing/Home";
 import AddFoodTruck from "./views/operator/trucks/AddFoodTruck";
 import "./css/App.css";
+import UpdateFoodTruck from "./views/operator/trucks/UpdateFoodTruck";
 
 function App() {
 	const userId = window.localStorage.getItem("user");
@@ -29,6 +30,12 @@ function App() {
 				path="/add-food-truck"
 				render={(props) => {
 					return <AddFoodTruck {...props} />;
+				}}
+			></Route>
+			<Route
+				path='/update-truck/:truckId'
+				render={(props) => {
+					return <UpdateFoodTruck {...props} />;
 				}}
 			></Route>
 			<Route path="/login" component={LoginFormRewrite} />
