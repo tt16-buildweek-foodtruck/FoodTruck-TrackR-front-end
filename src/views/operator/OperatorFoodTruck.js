@@ -1,16 +1,23 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
-import { dummyData } from "../../constants/dummyMenuData";
 
-export default function OperatorFoodtruck() {
-	const userId = "";
-	const truckId = "";
+export default function OperatorFoodtruck({userId}) {
+	const {truckId}= useParams();
 	const { push } = useHistory();
+	const [truck, setTruck] = useState({});
 
-	const fakedData = dummyData[1];
-
-	const handleViewTruck = () => {};
+	useEffect(() => {
+		axiosWithAuth()
+		.get(`api/trucks/${truckId}`)
+		.then(res => {
+			console.log('GET TRUCK RES: ', res.data)
+			setTruck(res.data.data)
+		})
+		.catch(err => {
+			console.log('GET TRUCK ERROR: ', err)
+		})
+	}, [])
 
 	const editTruck = () => {
 		axiosWithAuth()
@@ -39,8 +46,9 @@ export default function OperatorFoodtruck() {
 	return (
 		<div className="operator__dashboard__menu ">
 			<h3 className="operator__dashboard__menu__title">
-				{fakedData.truckName}
+				{truck.truckName}
 			</h3>
+			<img src={truck.truckImgURL} />
 			<div className="buttons">
 				<button className="operator__dashboard__menu__btn">Edit</button>
 				<button className="operator__dashboard__menu__btn">Delete</button>

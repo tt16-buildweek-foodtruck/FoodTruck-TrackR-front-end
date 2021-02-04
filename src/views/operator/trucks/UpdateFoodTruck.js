@@ -1,35 +1,25 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
-import { axiosWithAuth } from "../../utils/axiosWithAuth";
-import { fetchTruck } from "../../actions/truckActions";
+import { axiosWithAuth } from "../../../utils/axiosWithAuth";
+import { fetchTruck } from "../../../actions/truckActions";
 
 const initialTruckState = {
 	truckName: "",
 	truckImgURL: "",
 	cuisineId: 0,
-	// lat: null,
-	// long: null,
-	// departureTime: "",
+	lat: null,
+	long: null,
+	departureTime: "",
 };
 
-// menu:
-// [
-//     {
-//         itemName: '',
-//         itemDescription: '',
-//         itemPhotos: [],
-//         itemPrice: null,
-//         customerRatings: [],
-//         customerRatingAvg: null
-//     }
-// ]
 
-const AddFoodTruck = () => {
-	const userId = window.localStorage.getItem("user");
+const UpdateFoodTruck = () => {
+    const userId = window.localStorage.getItem("user");
+    const truckId = window.localStorage
 	const [newTruck, setNewTruck] = useState(initialTruckState);
 
-	const { push } = useHistory();
+    const { push } = useHistory();
 
 	const handleChange = (event) => {
 		setNewTruck({ ...newTruck, [event.target.name]: event.target.value });
@@ -38,7 +28,7 @@ const AddFoodTruck = () => {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		axiosWithAuth()
-			.post(`api/trucks/user${userId}/`, newTruck)
+			.put(`api/trucks/user${userId}/${truckId}`, newTruck)
 			.then((res) => {
 				console.log("POST NEW TRUCK: ", res);
 			})
@@ -55,10 +45,9 @@ const AddFoodTruck = () => {
 		});
 		push("/foodtruck");
 	};
-
-	return (
-		<div>
-			<h3>Add New Truck</h3>
+    return (
+        <div>
+            <h3>Update Truck</h3>
 			<form onSubmit={handleSubmit}>
 				<div>
 					<h4>Fill out the information below:</h4>
@@ -93,8 +82,7 @@ const AddFoodTruck = () => {
 						/>
 					</label>
 				</div>
-
-				{/* <div>
+				<div>
 					<h4>Current Truck Location</h4>
 					<label>
 						Latitude
@@ -126,22 +114,11 @@ const AddFoodTruck = () => {
 							onChange={handleChange}
 						/>
 					</label>
-				</div> */}
-				<button>Add Food Truck</button>
+				</div>
+				<button>Update Truck</button>
 			</form>
-		</div>
-	);
-};
+        </div>
+    )
+}
 
-const mapStateToProps = (state) => {
-	return {
-		truckName: state.truckName,
-		truckImgURL: state.truckImgURL,
-		cuisineId: state.cuisineId,
-		lat: state.lat,
-		long: state.long,
-		departureTime: state.departureTime,
-	};
-};
-
-export default connect(mapStateToProps, { fetchTruck })(AddFoodTruck);
+export default UpdateFoodTruck

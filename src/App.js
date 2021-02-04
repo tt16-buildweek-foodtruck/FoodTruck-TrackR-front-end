@@ -2,14 +2,14 @@ import React from "react";
 import { Route } from "react-router-dom";
 import PrivateRoute from "./components/privateServices/PrivateRoute";
 import Navbar from "./components/navbar/Navbar";
-import LoginFormRewrite from "./components/forms/LoginFormRewrite";
+import LoginFormRewrite from "./views/login/LoginFormRewrite";
 // import LoginForm from "./components/forms/LoginForm";
 import Footer from "./components/footer/Footer";
-import FoodTruck from "./components/foodTruck/FoodTruck";
-import TruckDashboard from "./components/operatorDashboard/TruckDashboard";
-import SignUpForm from "./components/forms/SignUpForm";
-import Home from "./components/home/Home";
-import AddFoodTruck from "./components/foodTruck/AddFoodTruck";
+import FoodTruck from "./views/operator/FoodTruck";
+import TruckDashboard from './views/operator/trucks/TruckDashboard';
+import SignUpForm from "./views/signup/SignUpForm";
+import Home from "./views/landing/Home";
+import AddFoodTruck from "./views/operator/trucks/AddFoodTruck";
 import "./css/App.css";
 
 function App() {
