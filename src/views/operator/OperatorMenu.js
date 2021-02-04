@@ -17,6 +17,7 @@ export default function OperatorMenu({ truckId }) {
 	const [message, setMessage] = useState("");
 	const [newMenu, setNewMenu] = useState([initialState]);
 	const [formValues, setFormValues] = useState(initialState);
+	const [editFormValues, setEditFormValues] = useState(initialState);
 
 	useEffect(() => {
 		const fetchMenu = () => {
@@ -29,6 +30,7 @@ export default function OperatorMenu({ truckId }) {
 		fetchMenu();
 	}, [truckId]);
 
+	//Add Dish Form
 	const onChange = (e) => {
 		setFormValues({ ...formValues, [e.target.name]: e.target.value });
 	};
@@ -42,10 +44,14 @@ export default function OperatorMenu({ truckId }) {
 			});
 	};
 
+	//Edit Dish Form
+	const handleChange = (e) => {
+		setEditFormValues({ ...editFormValues, [e.target.name]: e.target.value });
+	};
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		axiosWithAuth()
-			.put(`api/menus/truck${truckId}/${item}`, formValues)
+			.put(`api/menus/truck${truckId}/${item}`, editFormValues)
 			.then((res) => {
 				updateMenu();
 			});
@@ -145,8 +151,8 @@ export default function OperatorMenu({ truckId }) {
 											id="itemName"
 											type="text"
 											placeholder={item.itemName}
-											value={formValues.itemName}
-											onChange={onChange}
+											value={editFormValues.itemName}
+											onChange={handleChange}
 											className="operator__dashboard__form__input"
 										/>
 										<label className="operator__dashboard__form__label">
@@ -157,8 +163,8 @@ export default function OperatorMenu({ truckId }) {
 											id="itemDescription"
 											type="text"
 											placeholder={item.itemDescription}
-											value={formValues.itemDescription}
-											onChange={onChange}
+											value={editFormValues.itemDescription}
+											onChange={handleChange}
 											className="operator__dashboard__form__input"
 										/>
 										<label className="operator__dashboard__form__label">
@@ -169,8 +175,8 @@ export default function OperatorMenu({ truckId }) {
 											id="itemImgURL"
 											type="text"
 											placeholder={item.itemImgURL}
-											value={formValues.itemImgURL}
-											onChange={onChange}
+											value={editFormValues.itemImgURL}
+											onChange={handleChange}
 											className="operator__dashboard__form__input"
 										/>
 										<label className="operator__dashboard__form__label">
@@ -181,8 +187,8 @@ export default function OperatorMenu({ truckId }) {
 											id="price"
 											type="text"
 											placeholder={item.price}
-											value={formValues.price}
-											onChange={onChange}
+											value={editFormValues.price}
+											onChange={handleChange}
 											className="operator__dashboard__form__input"
 										/>
 										<button
