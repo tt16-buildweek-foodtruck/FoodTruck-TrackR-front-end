@@ -1,8 +1,7 @@
 /*Just an empty file structure to upload*/
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
-import { fetchUser } from "../../actions/index";
 import { useHistory } from "react-router-dom";
 import foodtruck from "../../assets/image/foodtruck.jpeg";
 import "../../css/Loginform.css";
@@ -14,7 +13,7 @@ const initialState = {
 	error: "",
 };
 
-function LoginFormRewrite(props) {
+function LoginFormRewrite() {
 	const [login, setLogin] = useState(initialState);
 	// const [details, setDetails] = useState({});
 	const { push } = useHistory();

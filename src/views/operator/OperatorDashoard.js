@@ -1,32 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import TruckCard from "./TruckCard";
-import TruckDashboard from "../operator/trucks/TruckDashboard"
 import { v4 as uuid } from "uuid";
-import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import "../../css/OperatorDashboard.css";
-
-const initialState = [];
 
 const OperatorDashboard = ({ props, truck }) => {
 	const userId = window.localStorage.getItem("user");
-	const [truckList, setTruckList] = useState(initialState);
-
-	const getFoodTruck = () => {
-		// axiosWithAuth()
-		// 	.get(`api/menus/truck:${truckId}`)
-		// 	.then((res) => {
-		// 		console.log("GET FOOD TRUCK RES: ", res);
-		// 	})
-		// 	.catch((err) => {
-		// 		console.log("GET FOOD TRUCK ERROR: ", err);
-		// 	});
-	};
-
-	useEffect(() => {
-		getFoodTruck();
-	}, []);
 
 	const { push } = useHistory();
 

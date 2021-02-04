@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { fetchMenu } from "../../../actions/menuActions";
-import { dummyData } from "../../../constants/dummyMenuData";
 import { v4 as uuid } from "uuid";
 import MenuItem from "./MenuItems";
 import "../../../css/Menu.css";

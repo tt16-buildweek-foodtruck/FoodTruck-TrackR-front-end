@@ -7,7 +7,7 @@ const MenuItem = (menuItem) => {
 			<p className="menu__block__paragraph">
 				{menuItem.menuItem.itemDescription}
 			</p>
-			<p className="menu__block__price">{menuItem.menuItem.itemPrice}</p>
+			<p className="menu__block__price">$ {menuItem.menuItem.itemPrice}</p>
 		</div>
 	);
 };
