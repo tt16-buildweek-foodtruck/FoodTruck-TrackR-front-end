@@ -1,4 +1,4 @@
-# front-end
+# FoodTruck TrackR - Front End
 
 Project Details:
 
